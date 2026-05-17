@@ -12,4 +12,4 @@ window.dataLayer = window.dataLayer || [];
 // 2. ID du conteneur GTM
 //    Remplace "GTM-XXXXXX" par ton propre ID
 //    (Récupéré sur https://tagmanager.google.com)
-window.GTM_ID = "GTM-XXXXXX";
+window.GTM_ID = "GTM-NQZ7HDTM";
