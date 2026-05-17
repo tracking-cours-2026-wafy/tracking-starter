@@ -1,0 +1,307 @@
+/* =========================================================
+   BiblioTech — feuille de style pédagogique
+   Tu peux modifier les couleurs ici si tu veux personnaliser
+   ========================================================= */
+
+:root {
+  --bg: #fafaf7;
+  --ink: #1a1a1a;
+  --muted: #6b6b6b;
+  --accent: #d64933;
+  --border: #e5e5e0;
+  --card: #ffffff;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html, body {
+  background: var(--bg);
+  color: var(--ink);
+  font-family: Georgia, "Times New Roman", serif;
+  line-height: 1.6;
+}
+
+main {
+  max-width: 980px;
+  margin: 0 auto;
+  padding: 3rem 1.5rem;
+}
+
+/* --- Header --- */
+.site-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.5rem;
+  border-bottom: 1px solid var(--border);
+  background: var(--card);
+}
+
+.logo {
+  font-weight: bold;
+  font-size: 1.25rem;
+  text-decoration: none;
+  color: var(--ink);
+  letter-spacing: -0.02em;
+}
+
+.nav {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav a {
+  text-decoration: none;
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+.nav a:hover,
+.nav a.active {
+  color: var(--accent);
+}
+
+/* --- Typographie --- */
+h1 {
+  font-size: 2.5rem;
+  line-height: 1.15;
+  margin-bottom: 1rem;
+  letter-spacing: -0.01em;
+}
+
+h3 {
+  font-size: 1.1rem;
+  margin-bottom: 0.5rem;
+}
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  font-size: 0.75rem;
+  color: var(--accent);
+  margin-bottom: 1rem;
+  font-family: Arial, sans-serif;
+}
+
+.lede {
+  font-size: 1.15rem;
+  color: var(--muted);
+  margin-bottom: 2rem;
+  max-width: 60ch;
+}
+
+.muted {
+  color: var(--muted);
+  font-size: 0.9rem;
+}
+
+/* --- Boutons --- */
+.btn {
+  display: inline-block;
+  padding: 0.9rem 1.5rem;
+  border: none;
+  border-radius: 4px;
+  font-family: inherit;
+  font-size: 1rem;
+  cursor: pointer;
+  text-decoration: none;
+  margin-right: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+.btn-primary {
+  background: var(--accent);
+  color: white;
+}
+
+.btn-primary:hover {
+  background: #b53d2a;
+}
+
+.btn-ghost {
+  background: transparent;
+  color: var(--ink);
+  border: 1px solid var(--ink);
+}
+
+/* --- Hero --- */
+.hero {
+  padding: 2rem 0 3rem;
+}
+
+/* --- Features --- */
+.features {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.5rem;
+  margin-top: 3rem;
+  padding-top: 3rem;
+  border-top: 1px solid var(--border);
+}
+
+.feature {
+  padding: 1rem 0;
+}
+
+.feature p {
+  color: var(--muted);
+  font-size: 0.95rem;
+}
+
+/* --- Page produit --- */
+.product {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3rem;
+  align-items: start;
+}
+
+@media (max-width: 720px) {
+  .product { grid-template-columns: 1fr; }
+}
+
+.book-cover {
+  background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+  color: white;
+  aspect-ratio: 3/4;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-size: 2rem;
+  text-align: center;
+  border-radius: 4px;
+  box-shadow: 0 20px 60px rgba(0,0,0,0.15);
+}
+
+.price {
+  font-size: 1.75rem;
+  font-weight: bold;
+  color: var(--accent);
+  margin: 1rem 0;
+}
+
+/* --- Panier --- */
+.cart-item {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+  padding: 1.5rem 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.cart-item-cover {
+  width: 60px;
+  height: 80px;
+  background: #1a1a1a;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 3px;
+  font-weight: bold;
+}
+
+.cart-item-price {
+  font-weight: bold;
+}
+
+.cart-summary {
+  margin-top: 2rem;
+  padding: 1.5rem;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+}
+
+.cart-summary .line {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+}
+
+.cart-summary .total {
+  font-size: 1.25rem;
+  font-weight: bold;
+  border-top: 1px solid var(--border);
+  margin-top: 0.5rem;
+  padding-top: 1rem;
+}
+
+/* --- Confirmation --- */
+.confirmation {
+  text-align: center;
+  padding: 2rem 0;
+}
+
+.check {
+  width: 80px;
+  height: 80px;
+  background: var(--accent);
+  color: white;
+  border-radius: 50%;
+  font-size: 2.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 2rem;
+}
+
+/* --- Formulaire --- */
+.form {
+  display: grid;
+  gap: 1rem;
+  max-width: 500px;
+}
+
+.form label {
+  display: grid;
+  gap: 0.4rem;
+}
+
+.form label span {
+  font-size: 0.9rem;
+  color: var(--muted);
+  font-family: Arial, sans-serif;
+}
+
+.form input,
+.form select,
+.form textarea {
+  font-family: inherit;
+  font-size: 1rem;
+  padding: 0.75rem;
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  background: var(--card);
+}
+
+.form input:focus,
+.form select:focus,
+.form textarea:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: -1px;
+}
+
+.form-success {
+  padding: 1rem;
+  background: #e8f5e9;
+  color: #2e7d32;
+  border-radius: 4px;
+  margin-top: 1rem;
+}
+
+/* --- Footer --- */
+.site-footer {
+  text-align: center;
+  padding: 2rem 1.5rem;
+  border-top: 1px solid var(--border);
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 4rem;
+}

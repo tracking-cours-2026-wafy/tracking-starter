@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BiblioTech — Produit</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Colle ton conteneur GTM ici (cf. index.html) -->
+
+  <!-- dataLayer initial : view_item -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "view_item",
+      page_type: "product",
+      ecommerce: {
+        currency: "EUR",
+        value: 29.90,
+        items: [{
+          item_id: "BOOK-001",
+          item_name: "Web Analytics pour débutants",
+          item_category: "Livres",
+          item_brand: "BiblioTech",
+          price: 29.90,
+          quantity: 1
+        }]
+      }
+    });
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">BiblioTech</a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="produit.html" class="active">Produit</a>
+      <a href="panier.html">Panier</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="product">
+      <div class="product-visual">
+        <div class="book-cover">
+          <span>Web<br />Analytics</span>
+        </div>
+      </div>
+
+      <div class="product-info">
+        <p class="eyebrow">Nouveauté</p>
+        <h1>Web Analytics pour débutants</h1>
+        <p class="price">29,90 €</p>
+        <p>
+          Un guide complet pour comprendre Google Tag Manager, GA4,
+          le dataLayer et la mesure du consentement. 320 pages, en
+          français, avec exemples concrets.
+        </p>
+
+        <!-- Bouton ajout au panier : déclenche add_to_cart -->
+        <button
+          id="add-to-cart"
+          class="btn btn-primary"
+          data-item-id="BOOK-001"
+          data-item-name="Web Analytics pour débutants"
+          data-item-price="29.90"
+          data-item-category="Livres"
+        >
+          Ajouter au panier
+        </button>
+
+        <p class="muted">Livraison estimée sous 48h</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© BiblioTech — Site pédagogique pour le cours Web Analytics</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

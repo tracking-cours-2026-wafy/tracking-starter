@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BiblioTech — Commande confirmée</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- Colle ton conteneur GTM ici (cf. index.html) -->
+
+  <!-- =========================================================
+       dataLayer initial : purchase (événement clé GA4 e-commerce)
+       transaction_id généré aléatoirement pour simuler une vraie commande
+       ========================================================= -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    var transactionId = "T-" + Math.floor(Math.random() * 1000000);
+
+    window.dataLayer.push({
+      event: "purchase",
+      page_type: "confirmation",
+      ecommerce: {
+        transaction_id: transactionId,
+        value: 29.90,
+        tax: 0,
+        shipping: 0,
+        currency: "EUR",
+        items: [{
+          item_id: "BOOK-001",
+          item_name: "Web Analytics pour débutants",
+          item_category: "Livres",
+          item_brand: "BiblioTech",
+          price: 29.90,
+          quantity: 1
+        }]
+      }
+    });
+
+    // Expose l'ID pour l'afficher à l'écran
+    document.addEventListener("DOMContentLoaded", function () {
+      var el = document.getElementById("transaction-id");
+      if (el) el.textContent = transactionId;
+    });
+  </script>
+</head>
+<body>
+
+  <header class="site-header">
+    <a href="index.html" class="logo">BiblioTech</a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="produit.html">Produit</a>
+      <a href="panier.html">Panier</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="confirmation">
+      <div class="check">✓</div>
+      <h1>Merci pour ta commande !</h1>
+      <p class="lede">
+        Ta commande <strong id="transaction-id">T-000000</strong> a bien été
+        enregistrée. Tu vas recevoir un email de confirmation.
+      </p>
+      <a href="index.html" class="btn btn-ghost">Retour à l'accueil</a>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© BiblioTech — Site pédagogique pour le cours Web Analytics</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>BiblioTech — Accueil</title>
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- =========================================================
+       EMPLACEMENT GTM (à coller juste sous le <head>)
+       Remplace GTM-XXXXXX par ton propre conteneur.
+       ========================================================= -->
+  <!-- Google Tag Manager -->
+  <!--
+  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+  })(window,document,'script','dataLayer','GTM-XXXXXX');</script>
+  -->
+  <!-- End Google Tag Manager -->
+
+  <!-- =========================================================
+       dataLayer initial : page_view
+       ========================================================= -->
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+      event: "page_view",
+      page_type: "home",
+      page_title: "Accueil",
+    });
+  </script>
+</head>
+<body>
+
+  <!-- ========================================================= -->
+  <!-- Conteneur GTM (noscript) — à activer si tu installes GTM  -->
+  <!-- ========================================================= -->
+  <!--
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
+  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+  -->
+
+  <header class="site-header">
+    <a href="index.html" class="logo">BiblioTech</a>
+    <nav class="nav">
+      <a href="index.html">Accueil</a>
+      <a href="produit.html">Produit</a>
+      <a href="panier.html">Panier</a>
+      <a href="contact.html">Contact</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Boutique de livres tech</p>
+      <h1>Apprends en lisant<br />les bons livres.</h1>
+      <p class="lede">
+        Sélection de livres sur le développement web, la data
+        et l'analyse marketing. Livraison sous 48h.
+      </p>
+
+      <!-- CTA principal : à tracker en "click_cta" -->
+      <a
+        href="produit.html"
+        class="btn btn-primary"
+        data-cta="hero_voir_produit"
+        data-cta-position="hero"
+      >
+        Voir le produit phare →
+      </a>
+
+      <!-- CTA secondaire : à tracker en "click_cta" -->
+      <a
+        href="contact.html"
+        class="btn btn-ghost"
+        data-cta="hero_contact"
+        data-cta-position="hero"
+      >
+        Nous contacter
+      </a>
+    </section>
+
+    <section class="features">
+      <div class="feature">
+        <h3>Livraison rapide</h3>
+        <p>Expédition en 24h depuis nos entrepôts.</p>
+      </div>
+      <div class="feature">
+        <h3>Paiement sécurisé</h3>
+        <p>Carte bancaire, Apple Pay, PayPal.</p>
+      </div>
+      <div class="feature">
+        <h3>Retours gratuits</h3>
+        <p>Tu as 30 jours pour changer d'avis.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>© BiblioTech — Site pédagogique pour le cours Web Analytics</p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
