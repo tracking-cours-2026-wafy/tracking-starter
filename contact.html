@@ -6,17 +6,16 @@
   <title>BiblioTech — Contact</title>
   <link rel="stylesheet" href="style.css" />
 
-  <!-- Colle ton conteneur GTM ici (cf. index.html) -->
-
-  <!-- dataLayer initial : page_view -->
+  <!-- Tracking : config → push de page → loader -->
+  <script src="gtm-config.js"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: "page_view",
       page_type: "contact",
       page_title: "Contact",
     });
   </script>
+  <script src="gtm-loader.js"></script>
 </head>
 <body>
 

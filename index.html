@@ -7,40 +7,28 @@
   <link rel="stylesheet" href="style.css" />
 
   <!-- =========================================================
-       EMPLACEMENT GTM (à coller juste sous le <head>)
-       Remplace GTM-XXXXXX par ton propre conteneur.
+       TRACKING — 3 blocs, dans cet ordre :
+       1. Config centralisée (ID GTM, dataLayer)
+       2. dataLayer push spécifique à cette page
+       3. Loader GTM (injecte le snippet head + le noscript body)
        ========================================================= -->
-  <!-- Google Tag Manager -->
-  <!--
-  <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-  new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-  j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-  'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
-  })(window,document,'script','dataLayer','GTM-XXXXXX');</script>
-  -->
-  <!-- End Google Tag Manager -->
 
-  <!-- =========================================================
-       dataLayer initial : page_view
-       ========================================================= -->
+  <!-- 1. Config -->
+  <script src="gtm-config.js"></script>
+
+  <!-- 2. dataLayer push : page_view -->
   <script>
-    window.dataLayer = window.dataLayer || [];
     window.dataLayer.push({
       event: "page_view",
       page_type: "home",
       page_title: "Accueil",
     });
   </script>
+
+  <!-- 3. Loader -->
+  <script src="gtm-loader.js"></script>
 </head>
 <body>
-
-  <!-- ========================================================= -->
-  <!-- Conteneur GTM (noscript) — à activer si tu installes GTM  -->
-  <!-- ========================================================= -->
-  <!--
-  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXX"
-  height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
-  -->
 
   <header class="site-header">
     <a href="index.html" class="logo">BiblioTech</a>

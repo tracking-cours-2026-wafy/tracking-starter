@@ -1,49 +1,84 @@
-# BiblioTech — Site pédagogique Web Analytics
+# BiblioTech — Site pédagogique Web Analytics (v2)
 
-Bienvenue 👋 Ce mini-site te sert de terrain de jeu pour apprendre à installer **Google Tag Manager** et à tracker des événements (page_view, click_cta, add_to_cart, form_submit, purchase…).
+Mini-site pour apprendre **Google Tag Manager** et le tracking côté front.
 
-## Ton URL publique
+## 🆕 Nouveauté de cette version : GTM chargé dynamiquement
 
-Une fois GitHub Pages activé (cf. section suivante), ton site est accessible à :
+Tu remarqueras qu'on **ne colle PAS le snippet GTM dans chaque fichier HTML**.
+À la place, on a :
 
+| Fichier            | Rôle                                                          |
+|--------------------|---------------------------------------------------------------|
+| `gtm-config.js`    | Contient **uniquement** ton ID GTM. C'est le seul à modifier. |
+| `gtm-loader.js`    | Injecte le snippet GTM dans `<head>` et le `<noscript>` dans `<body>`. À ne pas modifier. |
+
+Chaque page HTML appelle ces deux scripts en 2 lignes :
+
+```html
+<script src="gtm-config.js"></script>
+<script>/* dataLayer push spécifique à la page */</script>
+<script src="gtm-loader.js"></script>
 ```
-https://<ton-pseudo-github>.github.io/<nom-du-repo>/
-```
 
-Note bien cette URL : c'est elle que tu utiliseras dans **GTM** (preview, déclencheurs, etc.).
+**Pourquoi ?** Parce que dans la vraie vie un développeur ne va jamais copier-coller
+le snippet GTM dans 50 pages. Il le centralise dans un template, un composant React,
+un layout Jekyll, un partial Hugo, un include PHP… Ici on simule ça en JS pur
+puisque GitHub Pages est un hébergement statique.
 
-## Activer GitHub Pages sur ton repo
+## Activer GitHub Pages
 
-1. Va dans l'onglet **Settings** de ton repo
-2. Dans la barre de gauche, clique sur **Pages**
-3. Sous "Build and deployment", choisis :
-   - Source : **Deploy from a branch**
-   - Branch : **main** + dossier **/ (root)**
-4. Clique sur **Save**
-5. Attends 1 à 2 minutes, puis recharge la page Settings → Pages. L'URL apparaît en haut.
+1. Onglet **Settings** du repo → **Pages**
+2. Source : **Deploy from a branch** → main → `/ (root)`
+3. **Save**, attends 1-2 minutes, l'URL apparaît en haut.
 
-## Installer ton conteneur GTM
+## Installer ton GTM
 
-1. Crée ton compte / conteneur sur https://tagmanager.google.com
+1. Crée ton conteneur sur https://tagmanager.google.com
 2. Copie ton ID `GTM-XXXXXX`
-3. Ouvre **chaque fichier `.html`** dans GitHub (clique sur le fichier, puis sur l'icône **crayon** ✏️ en haut à droite)
-4. Décommente le bloc GTM dans `<head>` (et le `<noscript>` dans `<body>`)
-5. Remplace `GTM-XXXXXX` par ton vrai ID
-6. Clique sur **Commit changes** en bas de la page
+3. Ouvre **`gtm-config.js`** dans GitHub (icône crayon ✏️)
+4. Remplace `GTM-XXXXXX` par ton vrai ID
+5. **Commit changes**
+6. C'est fini. Tous les fichiers HTML chargent GTM automatiquement.
 
-## Les événements déjà en place
+Si tu oublies cette étape, le loader affiche un warning dans la console
+du navigateur : *"[GTM] Aucun ID GTM configuré"*.
 
-| Page              | Événement(s) dataLayer                  |
-|-------------------|------------------------------------------|
-| `index.html`      | `page_view`, `click_cta` (sur les CTA)   |
-| `produit.html`    | `view_item`, `add_to_cart`               |
-| `panier.html`     | `view_cart`, `begin_checkout`            |
-| `confirmation.html` | `purchase`                             |
-| `contact.html`    | `page_view`, `form_submit`               |
+## Les événements en place
+
+| Page                | Événements dataLayer                 |
+|---------------------|---------------------------------------|
+| `index.html`        | `page_view`, `click_cta`              |
+| `produit.html`      | `view_item`, `add_to_cart`            |
+| `panier.html`       | `view_cart`, `begin_checkout`         |
+| `confirmation.html` | `purchase`                            |
+| `contact.html`      | `page_view`, `form_submit`            |
+
+## Architecture du tracking
+
+```
+┌─────────────────────────────────────────────┐
+│  Chaque page HTML                           │
+│  ┌─────────────────────────────────────┐    │
+│  │ 1. gtm-config.js                    │    │
+│  │    → init dataLayer + GTM_ID        │    │
+│  ├─────────────────────────────────────┤    │
+│  │ 2. <script> push spécifique         │    │
+│  │    → page_view, view_item, etc.     │    │
+│  ├─────────────────────────────────────┤    │
+│  │ 3. gtm-loader.js                    │    │
+│  │    → injecte GTM <head> + <body>    │    │
+│  └─────────────────────────────────────┘    │
+│                                             │
+│  script.js (event listeners)                │
+│    → click_cta, add_to_cart, form_submit,   │
+│       begin_checkout                        │
+└─────────────────────────────────────────────┘
+```
 
 ## Exercices possibles
 
-- Crée un déclencheur GTM sur chaque événement et envoie-le à GA4
-- Ajoute une variable pour récupérer `ecommerce.value` sur la page de confirmation
-- Configure le consentement (Consent Mode v2) avant l'envoi des tags
-- Ajoute un nouvel événement (par ex. `scroll_50_percent`) en modifiant `script.js`
+- Créer un déclencheur GTM sur chaque événement et l'envoyer à GA4
+- Modifier `gtm-config.js` pour gérer un second ID (env. test vs prod)
+- Ajouter un événement `scroll_50_percent` dans `script.js`
+- Configurer le Consent Mode v2 dans `gtm-loader.js`
+- Bonus : remplacer le loader JS par un include Jekyll (`_includes/gtm.html`) pour voir un autre pattern de centralisation
